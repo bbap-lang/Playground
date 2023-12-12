@@ -127,6 +127,7 @@ code.block > .line::before {
     color: var(--color-text);
     background-color: var(--color-background);
     height: 100vh;
+    overflow: hidden;
 }
 
 main{
@@ -196,11 +197,12 @@ main{
 .output{
     font-family: 'Sono', monospace;
     display: flex;
-    height: 100%;
+    height: calc(100% - 40px);
     width: 50%;
     
     padding: 20px;
     white-space: pre-wrap;
+    overflow: auto;
 }
 
 .output .error{

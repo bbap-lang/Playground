@@ -9,7 +9,7 @@ public class CompilerService {
     public MarkupString Compile(string code) {
         Result<string> result = Compiler.Run(code, "/", new ConfigData());
         if (!result.TryGetValue(out var abap)) {
-            return new MarkupString($"<span class=\"error\">{result.Error.Text}</span>");
+            return new MarkupString($"<span class=\"error\">Error at line {result.Error.Line}: {result.Error.Text}</span>");
         }
         
         
