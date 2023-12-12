@@ -1,0 +1,45 @@
+﻿@page "/"
+@using BBAP
+@using BBAP.Results
+@using BbapPlayground.Services
+
+@inject IJSRuntime js
+@inject CompilerService compiler
+
+<div class="header">
+    <a @onclick="Compile" class="compile-button"><img src="/src/icons/play_button.svg" alt="Compile"></a>
+</div>
+<div class="content">
+<div class="input">
+    <textarea class="code" @bind="_code" spellcheck="false">
+
+    </textarea>
+</div>
+
+<div class="output">
+    @_output
+</div>
+</div>
+
+
+@code {
+    private string _code = "printLine(\"Hello World!\");";
+
+    private MarkupString _output = new("");
+    
+    private Task Compile() {
+        return Task.Run(() => {
+            _output = compiler.Compile(_code);
+        });
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if (!firstRender) {
+            return;
+        }
+
+        await js.InvokeVoidAsync("initJs");
+    }
+
+}
