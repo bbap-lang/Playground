@@ -7,18 +7,27 @@
 @inject CompilerService compiler
 
 <div class="header">
-    <a @onclick="Compile" class="compile-button"><img src="/src/icons/play_button.svg" alt="Compile"></a>
+    <a @onclick="Compile" class="compile-button">
+        <img src="/src/icons/play_button.svg" alt="Compile">
+    </a>
 </div>
 <div class="content">
-<div class="input">
-    <textarea class="code" @bind="_code" spellcheck="false">
+    <div class="input">
+        <textarea class="code" @bind="_code" spellcheck="false">
 
     </textarea>
-</div>
+    </div>
 
-<div class="output">
-    @_output
-</div>
+    <div class="output">
+        <div class="output-code">
+            @_output
+        </div>
+            @if (_compileTime > TimeSpan.Zero) {
+                <div class="footer">
+                    Succeeded in @(_compileTime.Milliseconds)ms
+                </div>
+            }
+    </div>
 </div>
 
 
@@ -26,10 +35,11 @@
     private string _code = "printLine(\"Hello World!\");";
 
     private MarkupString _output = new("");
-    
+    private TimeSpan _compileTime = TimeSpan.Zero;
+
     private Task Compile() {
         return Task.Run(() => {
-            _output = compiler.Compile(_code);
+            (_output, _compileTime) = compiler.Compile(_code);
         });
     }
 

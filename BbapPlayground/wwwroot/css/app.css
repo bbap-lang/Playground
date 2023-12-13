@@ -140,7 +140,7 @@ main{
     height: 100px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: left;
 }
 
 .compile-button{
@@ -195,11 +195,19 @@ main{
 }
 
 .output{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.output .output-code{
     font-family: 'Sono', monospace;
     display: flex;
+    flex-direction: column;
     height: calc(100% - 40px);
-    width: 50%;
-    
+    width: calc(100% - 42px);
+
     padding: 20px;
     white-space: pre-wrap;
     overflow: auto;
@@ -207,4 +215,9 @@ main{
 
 .output .error{
     color: var(--color-red);
+}
+
+.output .footer{
+    padding: 5px;
+    color: var(--color-green);
 }
