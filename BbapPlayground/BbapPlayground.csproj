@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="bbap-lang" Version="0.0.1.5" />
+        <PackageReference Include="bbap-lang" Version="0.0.1.6" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.12"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.12" PrivateAssets="all"/>
     </ItemGroup>
